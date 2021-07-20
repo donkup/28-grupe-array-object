@@ -78,7 +78,7 @@ class Person {
         console.log(`***${this.cars[id].brand} ${this.cars[id].model} is purchased for ${this.cars[id].price} ${this.cars[id].currency} ***`);
 
     }
-    totalSpentForCars() {
+    totalSpentForCars(spauzdinti = true) {
         let totalPriceCar = 0;
         for (let i = 0; i < this.cars.length; i++) {
             const car = this.cars[i];
@@ -89,18 +89,22 @@ class Person {
             }
 
         }
-        console.log(`/// ${this.personData.firstname} has spent ${totalPriceCar.toFixed(2)} Euros for his cars`);
+        if (spauzdinti) {
+            console.log(`/// ${this.personData.firstname} has spent ${totalPriceCar.toFixed(2)} Euros for his cars`);
+        }
 
         return totalPriceCar;
     }
-    totalSpentForApartments() {
+    totalSpentForApartments(spauzdinti = true) {
         const apartments = this.personData.adress;
-        console.log(`${this.personData.firstname} has spent ${apartments.price} ${apartments.currency} for his apartments.`);
+        if (spauzdinti) {
+            console.log(`${this.personData.firstname} has spent ${apartments.price} ${apartments.currency} for his apartments.`)
+        };
         return apartments.price;
     }
     totalSpendings() {
-        const gyvenimoIslaidos = this.totalSpentForApartments() + this.totalSpentForCars();
-        console.log(gyvenimoIslaidos);
+        const gyvenimoIslaidos = this.totalSpentForApartments(false) + this.totalSpentForCars(false);
+        console.log(`${this.personData.firstname} has spent ${gyvenimoIslaidos.toFixed(2)} Euros totaly`);
 
     }
 }
